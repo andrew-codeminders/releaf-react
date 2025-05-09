@@ -1,0 +1,21 @@
+{
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "sizes": "192x192",
+      "type": "image/png",
+      "src": "//img1.wsimg.com/isteam/ip/b7a9054f-29d9-46b1-af0f-ee155b4016fd/BeyondReLeaf-1-0001.png/:/rs=w:192,h:192,m"
+    },
+    {
+      "sizes": "512x512",
+      "type": "image/png",
+      "src": "//img1.wsimg.com/isteam/ip/b7a9054f-29d9-46b1-af0f-ee155b4016fd/BeyondReLeaf-1-0001.png/:/rs=w:512,h:512,m"
+    }
+  ],
+  "name": "Beyond ReLeaf",
+  "short_name": "Beyond ReLeaf",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF"
+}
