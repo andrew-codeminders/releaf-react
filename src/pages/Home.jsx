@@ -4,7 +4,7 @@ const Index = () => {
   const [html, setHtml] = useState("");
 
   useEffect(() => {
-    fetch("/index.html")
+    fetch("/home.html")
       .then(res => res.text())
       .then(setHtml);
   }, []);
