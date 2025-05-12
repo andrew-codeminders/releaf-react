@@ -8,6 +8,7 @@ import ContactUs from "./pages/ContactUs";
 import LearnMore from "./pages/LearnMore";
 import NewsEvents from "./pages/NewsEvents";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -20,6 +21,7 @@ root.render(
       <Route path="/learn-more" element={<LearnMore />} />
       <Route path="/news-events" element={<NewsEvents />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/checkout" element={<Checkout />} />
     </Routes>
   </Router>
 );
