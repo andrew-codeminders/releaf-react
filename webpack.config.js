@@ -5,10 +5,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: {
+    index: './src/index.jsx',
+    'checkout-widget': './src/checkout-widget/index.jsx'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/'
   },
   resolve: {

@@ -1,7 +1,6 @@
+import React from 'react';
 import { HustlepayPaymentGateway } from '@hustlepay/payment-gateway';
 import '@hustlepay/payment-gateway/dist/index.css';
-import React from 'react';
-import { CustomTrigger } from '../components/CustomTrigger';
 
 const order = {
   customer_id: -1,
