@@ -44,6 +44,11 @@ module.exports = {
         { from: 'public', to: '.' },
       ],
     }),
-    new Dotenv()
+    new Dotenv(
+      {
+        systemvars: false,
+        path: './.env'
+      }
+    )
   ],
 };
