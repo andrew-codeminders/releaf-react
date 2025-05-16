@@ -32,16 +32,17 @@ async function getPageWithInjection() {
 
     const div = document.createElement('div');
     div.id = 'checkout-widget-root';
-    div.dataset.amount = document.getElementById('order-total').dataset.total;
+    // div.dataset.amount = document.getElementById('order-total').dataset.total;
+    div.dataset.amount = '49.99';
     document.body.appendChild(div);
 
-    const reactScript = document.createElement('script');
-    reactScript.src = 'https://unpkg.com/react@next/umd/react.production.min.js';
-    document.head.appendChild(reactScript);
+    // const reactScript = document.createElement('script');
+    // reactScript.src = 'https://unpkg.com/react@next/umd/react.production.min.js';
+    // document.head.appendChild(reactScript);
 
-    const reactDOMScript = document.createElement('script');
-    reactDOMScript.src = 'https://unpkg.com/react-dom@next/umd/react-dom.production.min.js';
-    document.head.appendChild(reactDOMScript);
+    // const reactDOMScript = document.createElement('script');
+    // reactDOMScript.src = 'https://unpkg.com/react-dom@next/umd/react-dom.production.min.js';
+    // document.head.appendChild(reactDOMScript);
 
     const script = document.createElement('script');
     script.src = 'http://localhost:3000/bundle.js';
