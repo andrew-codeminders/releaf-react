@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Converted React app from static HTML site",
   "scripts": {
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "webpack --mode production --config client/webpack.config.js",
+    "build": "npm run build:server",
     "build:server": "webpack --mode production --config server/webpack.config.js"
   },
   "dependencies": {
