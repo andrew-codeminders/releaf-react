@@ -9,8 +9,10 @@ COPY package*.json ./
 ENV PUPPETEER_SKIP_DOWNLOAD=true
 RUN npm install
 
+ARG CACHEBUST=1
 # Copy app source code
-COPY . .
+COPY index.js ./
+ARG CACHEBUST=0
 
 # Stage 2: Production
 FROM node:20-slim
