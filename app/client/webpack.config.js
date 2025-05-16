@@ -1,33 +1,31 @@
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: {
-    index: './src/index.jsx',
-    'checkout-widget': './src/checkout-widget/index.jsx'
-  },
+  entry: path.resolve(__dirname, 'index.jsx'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    path: path.resolve(__dirname, '../dist/client'),
+    filename: 'client.bundle.js',
     publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx']
-  },
-  devServer: {
-    static: './public',
-    historyApiFallback: true,
-    port: 3000,
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react'
+            ]
+          }
+        },
       },
       {
         test: /\.css$/,
@@ -37,18 +35,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: path.resolve(__dirname, 'index.html'),
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'public', to: '.' },
+        { from:  path.resolve(__dirname, './public'), to: '.' },
       ],
     }),
-    new Dotenv(
-      {
-        systemvars: false,
-        path: './.env'
-      }
-    )
   ],
 };

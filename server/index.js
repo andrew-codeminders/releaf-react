@@ -1,7 +1,9 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const app = express();
-const PORT = 8000;
+const PORT = 3000;
+
+app.use(express.static('public'));
 
 const targetUrl = 'https://b7a9054f-29d9-46b1-af0f-ee155b4016fd.mysimplestore.com/checkout';
 const headers = {
@@ -10,10 +12,12 @@ const headers = {
   'Cookie': 'cookie_terms_accepted=true; _tccl_visitor=0227d211-6876-4ba5-85c7-f87dba976d10; _ga=GA1.1.895578352.1746003121; __stripe_mid=f24628ac-ba04-4fa0-8d76-0384b23fda9837c51d; _tccl_visit=41a368bc-a20d-4b84-8b8d-3612db957a18; __stripe_sid=2532b3c9-cd98-4a65-812d-4dfbc2f621e29ce7d7; _nemo_session=SWRqMjdsOXJkbVNlem9PNkhLbk5zTUNqR1pCQ0JRUGYyeXRydU90Z0txN0FiZk9WYkZvR3EvY1d6MmxmbDVSMWk3akVwL0U2NjQ5blVWRUJGUEE2RkVDQ2hFS1dOVHJDQjR4SGlibVFvWlVDMSttTGY5bnRyZkNIbWxzS2ZGSk1BTzZ2cjFldU9FRUhHcjFHL1g2T0YxV0xsRVA4OWgyTllPZVNzUldSV3lkc2xtckU4L1NXdFVPazdvTVBrdUcyS01jeXdIZElqd0pGR1gzMVNWS01seGc2eWpRQXd0MEVjeEdzVVRlMUp6ZTNiQk5tRzM0VjRTK1lqZStaT1J6bTVadjZnelE1ZExLbDI3R1BPZFRTeFFXVFpFZWxjWDFPak9YQTM4Q1p3RjRWRTVMTi9KcnB6ZVh3OWxSNCt3SlYtLW8yc0dXQURSek5PNXQxZGRXVVpia3c9PQ%3D%3D--6edd82ff7af4139c9c2f32ee297eae04f08e6747; _scc_session=pc=8&C_TOUCH=2025-05-16T09:13:27.232Z; _ga_BF2FDR6KMM=GS2.1.s1747384886$o9$g1$t1747386807$j0$l0$h0',
 }
 
+
 // Function to launch Puppeteer and inject content into the page
 async function getPageWithInjection() {
-  const browser = await puppeteer.launch({ headless: true, });
+  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
+
 
 
   await page.setExtraHTTPHeaders(headers)
@@ -27,11 +31,23 @@ async function getPageWithInjection() {
     document.head.prepend(base);
 
     const div = document.createElement('div');
-    div.style.background = 'yellow';
-    div.style.padding = '10px';
-    div.innerText = 'Injected by Puppeteer Proxy!';
+    div.id = 'checkout-widget-root';
+    div.dataset.amount = document.getElementById('order-total').dataset.total;
     document.body.appendChild(div);
+
+    const reactScript = document.createElement('script');
+    reactScript.src = 'https://unpkg.com/react@next/umd/react.production.min.js';
+    document.head.appendChild(reactScript);
+
+    const reactDOMScript = document.createElement('script');
+    reactDOMScript.src = 'https://unpkg.com/react-dom@next/umd/react-dom.production.min.js';
+    document.head.appendChild(reactDOMScript);
+
+    const script = document.createElement('script');
+    script.src = 'http://localhost:3000/bundle.js';
+    document.body.appendChild(script);
   });
+
 
   // Get the modified HTML content of the page
   const modifiedContent = await page.content();
@@ -49,7 +65,7 @@ app.get('/proxy', async (req, res) => {
     res.send(modifiedHtml);
   } catch (err) {
     console.error(`Error loading ${targetUrl}:`, err);
-    res.status(500).send('Error proxying the page');
+    res.status(500).send('Error proxying the page: ');
   }
 });
 

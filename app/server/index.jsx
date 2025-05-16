@@ -16,7 +16,7 @@ if (!process.env.API_URL)
 if (!process.env.PUBLISHABLE_KEY)
   throw new Error(`PUBLISHABLE_KEY environment variable is required!`);
 
-const rootElement = document.getElementById("checkout-widget-root");
+
 const amount = +rootElement.dataset.amount * 100;
 
 const order = {
@@ -41,7 +41,7 @@ const config = {
   },
 };
 
-if (rootElement) {
-  const root = createRoot(rootElement);
-  root.render(<HustlepayPaymentGateway config={config} order={order} />);
-}
+const rootElement = document.getElementById("checkout-widget-root");
+const root = createRoot(rootElement);
+root.render(<HustlepayPaymentGateway config={config} order={order} />);
+

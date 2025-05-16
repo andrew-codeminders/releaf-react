@@ -1,0 +1,32 @@
+services:
+  builder:
+    build:
+      context: ./app
+    volumes:
+      - build_client:/app/dist/client
+      - build_server:/app/dist/server
+    command: ["true"]
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - build_client:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - builder
+
+  server:
+    build: 
+      context:
+        ./server
+    volumes:
+      - build_server:/app/public:ro
+    ports:
+      - "3000:3000"
+    depends_on:
+      - builder
+
+volumes:
+  build_client:
+  build_server:
