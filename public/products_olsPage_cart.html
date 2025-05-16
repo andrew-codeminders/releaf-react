@@ -92,6 +92,19 @@
     <meta name="twitter:image:alt" content="Beyond ReLeaf" />
     <meta name="theme-color" content="#FFFFFF" />
     <style data-inline-fonts>
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 32px;
+        background-color: rgb(226, 226, 226);
+        color: black;
+        border: none;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        height: 50px;
+      }
       /* vietnamese */
       @font-face {
         font-family: 'Cabin';
@@ -2873,7 +2886,11 @@ SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
                                 penetration and sustained release technologies.&nbsp;</span
                               >
                             </p>
+                            <div id="checkout-widget-root" data-amount="49.99"></div>
+                            <script src="checkout-widget.js"></script>
                           </div>
+
+                          <button onclick="loadProxy()" class="btn">Checkout</button>
                         </div>
                       </div>
                     </div>
@@ -2933,6 +2950,16 @@ SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
         </div>
       </div>
     </div>
+    <script>
+      async function loadProxy() {
+        const response = await fetch('/proxy');
+        const html = await response.text();
+        console.log(html);
+        document.open();
+        document.write(html);
+        document.close();
+      }
+    </script>
     <script
       src="https://img1.wsimg.com/blobby/go/b7a9054f-29d9-46b1-af0f-ee155b4016fd/gpub/9d88eeb7414a8e27/script.js"
       crossorigin
