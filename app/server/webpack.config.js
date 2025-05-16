@@ -32,10 +32,10 @@ module.exports = {
         path: path.resolve(__dirname, '.env')
       }
     ),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from:  path.resolve(__dirname, './public'), to: '.' },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     { from:  path.resolve(__dirname, './public'), to: '.' },
+    //   ],
+    // }),
   ],
 };
