@@ -1,6 +1,6 @@
 node_modules/
 *.log
-*.env
 Dockerfile
 .dockerignore
 .DS_Store
+.npmrc.example

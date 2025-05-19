@@ -12,6 +12,7 @@ RUN npm install
 ARG CACHEBUST=1
 # Copy app source code
 COPY index.js ./
+COPY .env ./
 ARG CACHEBUST=0
 
 # Stage 2: Production
