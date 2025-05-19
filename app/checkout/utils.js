@@ -1,3 +1,3 @@
 export function toCents(dollars) {
-  return dollars * 100;
+  return Math.round(dollars * 100);
 }
