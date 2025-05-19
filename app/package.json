@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Converted React app from static HTML site",
   "scripts": {
-    "build": "npm run build:server",
-    "build:server": "webpack --mode production --config server/webpack.config.js"
+    "build": "npm run build:checkout",
+    "build:checkout": "webpack --mode production --config checkout/webpack.config.js"
   },
   "dependencies": {
     "@hustlepay/payment-gateway": "^1.2.1",

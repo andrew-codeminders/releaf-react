@@ -4,6 +4,9 @@ import { HustlepayPaymentGateway } from "@hustlepay/payment-gateway";
 import "@hustlepay/payment-gateway/dist/index.css";
 import "./index.css";
 
+if (!process.env.BASE_URL)
+  throw new Error(`BASE_URL environment variable is required!`);
+
 if (!process.env.PUBLIC_KEY)
   throw new Error(`PUBLIC_KEY environment variable is required!`);
 
@@ -28,11 +31,11 @@ const order = {
   order_items: [],
   billing_address_1: "",
   billing_address_2: "",
-  redirect_url: "http://localhost:8080/payment-success.html?status=success",
+  redirect_url: process.env.BASE_URL,
 };
 
 const config = {
-  pluginUrl: "", // TODO: replace with CDN url in the future, for now we get images from public assets
+  pluginUrl: process.env.BASE_URL, // TODO: replace with CDN url in the future, for now we get images from public assets
   publicKey: process.env.PUBLIC_KEY,
   secretKey: process.env.SECRET_KEY,
   stripeConfig: {

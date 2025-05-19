@@ -4,8 +4,8 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
   entry: path.resolve(__dirname, 'index.jsx'),
   output: {
-    path: path.resolve(__dirname, '../dist/server'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, '../dist'),
+    filename: 'checkout.js',
     publicPath: '/'
   },
   resolve: {

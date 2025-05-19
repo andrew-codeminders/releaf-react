@@ -3,26 +3,26 @@ services:
     build:
       context: ./app
     volumes:
-      - build_server:/app/dist/server
+      - build_files:/app/dist
     command: ["true"]
 
   nginx:
     build:
-      context: ./client
+      context: ./nginx
     ports:
       - "8080:80"
+    volumes:
+      - build_files:/usr/share/nginx/html/dist
     depends_on:
       - builder
 
-  server:
+  express:
     build: 
-      context: ./server
-    volumes:
-      - build_server:/app/public:ro
-    ports:
-      - "3000:3000"
+      context: ./express
+    expose:
+      - "3000"
     depends_on:
       - builder
 
 volumes:
-  build_server:
+  build_files:
