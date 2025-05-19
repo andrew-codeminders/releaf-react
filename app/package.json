@@ -7,7 +7,7 @@
     "build:checkout": "webpack --mode production --config checkout/webpack.config.js"
   },
   "dependencies": {
-    "@hustlepay/payment-gateway": "^1.2.1",
+    "@hustlepay/payment-gateway": "^1.2.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0"
