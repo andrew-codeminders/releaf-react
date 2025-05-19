@@ -43,12 +43,16 @@ async function getPageWithInjection(cookie) {
     paymentHeader.parentElement.parentElement.style.display = 'none';
     
     document
-      .getElementById("order-confirmation")
-      .insertAdjacentHTML(
-        "beforeend",
-        '<div class="box"><div id="payment-section"><h5 class="no-margin-top-desktop">Payment CUSTOM</h5></div></div>'
-      );
-
+    .getElementById("order-confirmation")
+    .insertAdjacentHTML(
+      "beforeend",
+      '<div class="box"><div id="payment-section"><h5 class="no-margin-top-desktop">Payment CUSTOM</h5></div></div>'
+    );
+    
+    // Adding "No Payment HTML element"
+    const noPaymentHtml = '<div style="display: flex; justify-content: center; padding-top: 25px; padding-bottom: 25px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 0px 0px inset;"><div class="container-fluid"><img src="//onlinestore.wsimg.com/assets/themes/__master/assets/images/payment_card_icon-1a6d5485b9350ea0f76f4ebd2e6ad4a900993ac32639074dc4b1e48f21dbf87d.svg" style="padding-right: 5px;"><span>Payment options will be displayed after entering your shipping address</span></div></div>';
+    document.body.querySelector('#payment-section h5').insertAdjacentHTML("afterend", noPaymentHtml);
+    
     const checkoutRoot = document.createElement("div");
     checkoutRoot.id = "checkout-widget-root";
     checkoutRoot.dataset.amount =
