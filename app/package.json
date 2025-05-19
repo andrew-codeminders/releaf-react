@@ -2,10 +2,9 @@
   "name": "react-beyond-releaf",
   "version": "1.0.0",
   "description": "Converted React app from static HTML site",
-  "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --mode development --open",
-    "build": "webpack --mode production"
+    "build": "npm run build:checkout",
+    "build:checkout": "webpack --mode production --config checkout/webpack.config.js"
   },
   "dependencies": {
     "@hustlepay/payment-gateway": "^1.2.1",

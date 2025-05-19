@@ -1,0 +1,13 @@
+{
+  "name": "react-beyond-releaf-express",
+  "version": "1.0.0",
+  "description": "Server that uses Express.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "puppeteer": "^24.8.2"
+  }
+}
